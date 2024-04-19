@@ -12,6 +12,7 @@ import { AppContainer } from '../../Component'
 import { Color, Responsive, Screen } from '../../Helper'
 
 interface LogInScreenProps {
+  navigation: any;
 }
 
 const staticValues = {
@@ -19,7 +20,7 @@ const staticValues = {
   passwordPlaceholder: 'Password'
 }
 
-const LogInScreen = (props: LogInScreenProps) => {
+const LogInScreen: React.FC<LogInScreenProps> = (props) => {
   console.log('props LogInScreen', props)
   const { navigation } = props
 

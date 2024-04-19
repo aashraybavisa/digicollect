@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { memo } from 'react'
 import { StatusBar } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Color, Screen } from '../Helper'
-import { HomeScreen, LogInScreen, RegistrationScreen } from '../Screen'
+import { AddPasswordScreen, HomeScreen, LogInScreen, RegistrationScreen } from '../Screen'
 
 interface RouteProps {
   isLogin: Boolean;
@@ -30,7 +30,7 @@ const Route = (props: RouteProps) => {
   const MainStack = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={Screen.HomeScreen} component={HomeScreen} />
+        <Stack.Screen name={Screen.AddPasswordScreen} component={AddPasswordScreen} />
       </Stack.Navigator>
     )
   }
@@ -43,7 +43,7 @@ const Route = (props: RouteProps) => {
           screenOptions={{ headerShown: false }}
           initialRouteName={isLogin ? Screen.MainStack : Screen.AuthStack}
         >
-          <Stack.Screen name={Screen.AuthStack} component={RenderAuthStack} />
+          {/* <Stack.Screen name={Screen.AuthStack} component={RenderAuthStack} /> */}
           <Stack.Screen name={Screen.MainStack} component={MainStack} />
         </Stack.Navigator>
       </NavigationContainer>
