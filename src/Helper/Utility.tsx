@@ -1,7 +1,9 @@
 // import Toast from 'react-native-root-toast'
 // import { Platform } from 'react-native'
 
+import _ from 'lodash'
 import { Alert } from 'react-native'
+import Constant from './Constant'
 
 const deepClone = (val: Object) => {
   return JSON.parse(JSON.stringify(val))
@@ -26,8 +28,6 @@ const isValid = (value, regEx = false) => {
   return value === null || value === undefined || !value.trim()
 }
 
-
-
 const VideoUrl = (videoData: Object) => {
   const url = videoData.video_link
   const videoId = url.match(
@@ -45,12 +45,31 @@ const secondsTommss = (seconds) => {
   return ans
 }
 
+interface addPasswordProps {
+  username: string
+  password: string
+}
+
+const addPasswordValidation = (data: addPasswordProps) => {
+  const {username, password} = data
+  const {usernameValidation, passwordValidation} = Constant.UI.AddPasswordScreen 
+  if (_.isEmpty(username) ){
+    showToast(usernameValidation)
+    return false
+  } else if ( _.isEmpty(password)) {
+    showToast(passwordValidation)
+    return false
+  }
+  return true
+}
+
 const Utility = {
   deepClone,
   isValid,
   showToast,
   VideoUrl,
-  secondsTommss
+  secondsTommss,
+  addPasswordValidation
 }
 
 export default Utility

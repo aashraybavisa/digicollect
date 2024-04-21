@@ -10,7 +10,9 @@ const Constant = {
       urlPlaceholder: 'Enter URL',
       detailTitle: 'Details',
       detailPlaceholder: 'Enter Detail',
-      addButtonTitle: 'Add Password'
+      addButtonTitle: 'Add Password',
+      usernameValidation: 'Please enter Username',
+      passwordValidation: 'Please enter Password'
     }
   }
 }

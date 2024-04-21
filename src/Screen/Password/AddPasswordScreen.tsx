@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import React, { memo, useState } from 'react'
 // components
 import { AppButton, AppContainer, AppHeader, AppTextInput } from '../../Component'
-import { Color, CommonStyles, Constant } from '../../Helper'
+import { Color, CommonStyles, Constant, Utility } from '../../Helper'
 
 // interface
 interface AddPasswordScreenProps {
@@ -36,24 +36,25 @@ const AddPasswordScreen: React.FC<AddPasswordScreenProps> = (props) => {
   } = Constant.UI.AddPasswordScreen
 
   // callbacks
-  const onChangeUsername = (newUsername: string) => {
-    setUsername(newUsername)
-  }
+  const onChangeUsername = (newUsername: string) => setUsername(newUsername)
 
-  const onChangePassword = (newPassword: string) => {
-    setPassword(newPassword)
-  }
+  const onChangePassword = (newPassword: string) => setPassword(newPassword)
 
-  const onChangeUrl = (newUrl: string) => {
-    setUrl(newUrl)
-  }
+  const onChangeUrl = (newUrl: string) => setUrl(newUrl)
 
-  const onChangeDetail = (newDetail: string) => {
-    setDetail(newDetail)
-  }
+  const onChangeDetail = (newDetail: string) => setDetail(newDetail)
+
+  const onPressBackButton = () => navigation?.goBack()
 
   const onAddPassword = () => {
     console.log('onAddPassword')
+    const isValid = Utility.addPasswordValidation({ username, password })
+    if (isValid) {
+      // save new entry
+
+      // redirect to password list screen
+      navigation?.goBack()
+    }
   }
 
   // render
@@ -103,7 +104,7 @@ const AddPasswordScreen: React.FC<AddPasswordScreenProps> = (props) => {
       bottomColor={Color.themeBlue}
     >
       <View style={CommonStyles.flex}>
-        <AppHeader isBackButton titleText={headerText} />
+        <AppHeader titleText={headerText} isBackButton onPressBack={onPressBackButton} />
         <View style={styles.mainContainer}>
           {renderUsernameInput()}
           {renderPasswordInput()}
